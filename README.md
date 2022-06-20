@@ -64,3 +64,7 @@ Pasos a seguir para trabajar con Hardhat:
 - Comprobar el despliegue en polygonscan:
 
 <img src="./readme-images/polygonscan.png" alt="polygonscan" />
+
+await provider.send("eth_requestAccounts", []);
+
+const signer = provider.getSigner();
