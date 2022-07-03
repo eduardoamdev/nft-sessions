@@ -11,33 +11,41 @@ const App = () => {
     sentence: "",
   });
 
-  const [inputSentece, setInputSentence] = useState({
+  const [inputSentence, setInputSentence] = useState({
     sentence: "",
+  });
+
+  const [contract, setContract] = useState({
+    contract: {},
   });
 
   const contractAddress = "0x0F4a5909a186Ebdeab15081640B86544A129728E";
 
   const { ethereum } = window;
 
-  const provider = new ethers.providers.Web3Provider(ethereum);
+  const getContract = () => {
+    const provider = new ethers.providers.Web3Provider(ethereum);
 
-  const signer = provider.getSigner();
+    const signer = provider.getSigner();
 
-  const helloWorldContract = new ethers.Contract(
-    contractAddress,
-    contractAbi,
-    signer
-  );
+    const helloWorldContract = new ethers.Contract(
+      contractAddress,
+      contractAbi,
+      signer
+    );
 
-  const getContractSentence = async () => {
-    const sentence = await helloWorldContract.getSentence();
+    return helloWorldContract;
+  };
+
+  const getContractSentence = async (_contract) => {
+    const sentence = await _contract.getSentence();
     setSentence({
       sentence,
     });
   };
 
   const setContractSentece = async () => {
-    await helloWorldContract.setSentence(inputSentece.sentence);
+    await contract.contract.setSentence(inputSentence.sentence);
   };
 
   const handleClick = (event) => {
@@ -52,12 +60,20 @@ const App = () => {
   };
 
   useEffect(() => {
-    getContractSentence();
+    if (ethereum) {
+      const contract = getContract();
+      getContractSentence(contract);
+      setContract({
+        contract,
+      });
+    }
   }, []);
 
   return (
     <div>
-      {status === "initializing" ? (
+      {!ethereum ? (
+        <div>Install Metamask</div>
+      ) : status === "initializing" ? (
         <div>Synchronisation with MetaMask ongoing</div>
       ) : status === "unavailable" ? (
         <div>MetaMask not available</div>
