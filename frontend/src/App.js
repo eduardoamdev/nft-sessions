@@ -1,81 +1,85 @@
 import "./App.css";
+import { useMetaMask } from "metamask-react";
+import contractAbi from "./abis/helloWorld.json";
 import { ethers } from "ethers";
 import { useState, useEffect } from "react";
 
-const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+const App = () => {
+  const { status, connect, account, chainId } = useMetaMask();
 
-const abi = [
-  "function getSentence() public view returns (string memory)",
-  "function setSentence(string memory sentence) public",
-];
-
-const address = "0x6E5e9A0Af782E3B5657Dfd00887CBCF4513D7261";
-
-const signer = provider.getSigner();
-
-const helloWorld = new ethers.Contract(address, abi, signer);
-
-function App() {
   const [sentence, setSentence] = useState({
     sentence: "",
   });
 
-  const [newSentence, setNewSentence] = useState({
+  const [inputSentece, setInputSentence] = useState({
     sentence: "",
   });
 
-  const getAccount = async () => {
-    const account = await signer.getAddress();
+  const contractAddress = "0x5240E3aD90b8F2348cBFE25452eCe4ea58CD8182";
 
-    console.log(account);
-  };
+  const { ethereum } = window;
+
+  const provider = new ethers.providers.Web3Provider(ethereum);
+
+  const signer = provider.getSigner();
+
+  const helloWorldContract = new ethers.Contract(
+    contractAddress,
+    contractAbi,
+    signer
+  );
 
   const getContractSentence = async () => {
-    const sentence = await helloWorld.functions.getSentence();
-
+    const sentence = await helloWorldContract.getSentence();
     setSentence({
       sentence,
     });
   };
 
-  const setContractSentence = async () => {
-    await helloWorld.functions.setSentence(newSentence.sentence);
-
-    getContractSentence();
-  };
-
-  const handleChange = (event) => {
-    event.preventDefault();
-    setNewSentence({
-      sentence: event.target.value,
-    });
+  const setContractSentece = async () => {
+    await helloWorldContract.setSentence(inputSentece.sentence);
   };
 
   const handleClick = (event) => {
     event.preventDefault();
-    setContractSentence();
+    setContractSentece();
+  };
+
+  const handleChange = (event) => {
+    setInputSentence({
+      sentence: event.target.value,
+    });
   };
 
   useEffect(() => {
-    getAccount();
     getContractSentence();
   }, []);
 
   return (
-    <div className="App">
-      <h1>This is the contract sentence</h1>
-      {sentence.sentence === "" ? (
-        <h3>Loading</h3>
-      ) : (
+    <div>
+      {status === "initializing" ? (
+        <div>Synchronisation with MetaMask ongoing</div>
+      ) : status === "unavailable" ? (
+        <div>MetaMask not available</div>
+      ) : status === "notConnected" ? (
+        <button onClick={connect}>Connect to MetaMask</button>
+      ) : status === "connecting" ? (
+        <div>Connecting...</div>
+      ) : status === "connected" ? (
         <div>
-          <h2>{sentence.sentence}</h2>
-          <h3>Change sentence</h3>
+          <div>
+            Connected account {account} on chain ID {chainId}
+          </div>
+          <div>{sentence.sentence}</div>
+          <div>Write a new sentence</div>
           <input onChange={handleChange}></input>
-          <button onClick={handleClick}>Submit</button>
+          <button onClick={handleClick}>Set sentece</button>
         </div>
+      ) : (
+        <div>There is an error. Try again.</div>
       )}
     </div>
   );
-}
+};
 
 export default App;
