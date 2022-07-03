@@ -18,6 +18,7 @@ Pasos a seguir para trabajar con Hardhat:
   };
 
  - Configurar para el despliegue en una red remota. En este caso utilizaremos la testnet de Polygon (Mumbai).
+        ```
         module.exports = {
           defaultNetwork: "matic",
           networks: {
@@ -40,6 +41,7 @@ Pasos a seguir para trabajar con Hardhat:
             },
           },
         };
+        ```
 
         La clave PRIVATE_KEY será de la wallet que vamos a emplear para hacer el despliegue.
 
