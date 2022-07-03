@@ -15,7 +15,7 @@ const App = () => {
     sentence: "",
   });
 
-  const contractAddress = "0x5240E3aD90b8F2348cBFE25452eCe4ea58CD8182";
+  const contractAddress = "0x0F4a5909a186Ebdeab15081640B86544A129728E";
 
   const { ethereum } = window;
 

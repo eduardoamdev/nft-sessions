@@ -23,7 +23,7 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
     hardhat: {},
     matic: {
       url: "https://rpc-mumbai.maticvigil.com",
-      accounts: ["9eb3e9bda9323373798fb20637a9077038e88fa7150804b0a9208ff483875574"],
+      accounts: [process.env.PRIVATE_KEY],
     },
   },
   etherscan: {
