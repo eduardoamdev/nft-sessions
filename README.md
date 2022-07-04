@@ -7,7 +7,8 @@ Cómo importar la network en Metamask:
   - Importar la local network si estamos trabajando con un nodo local. En este caso, la URL será http://localhost:8545 y el id de la cadena 31337.
 
   - Importar la red de pruebas de Polygon (Mumbai). Los parámetros son los siguientes.
-    Network Name: Mumbai Testnet
+    
+    - Network Name: Mumbai Testnet
 
     - New RPC URL: https://rpc-mumbai.maticvigil.com/
 

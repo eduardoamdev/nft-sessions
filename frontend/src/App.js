@@ -19,7 +19,7 @@ const App = () => {
     contract: {},
   });
 
-  const contractAddress = "0x0F4a5909a186Ebdeab15081640B86544A129728E";
+  const contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
 
   const { ethereum } = window;
 
@@ -37,20 +37,26 @@ const App = () => {
     return helloWorldContract;
   };
 
-  const getContractSentence = async (_contract) => {
-    const sentence = await _contract.getSentence();
+  const getContractSentence = async () => {
+    const sentence = await contract.contract.getSentence();
     setSentence({
       sentence,
     });
   };
 
-  const setContractSentece = async () => {
+  const setContractSentence = async () => {
     await contract.contract.setSentence(inputSentence.sentence);
   };
 
-  const handleClick = (event) => {
+  const handleGetClick = (event) => {
     event.preventDefault();
-    setContractSentece();
+    getContractSentence();
+  };
+
+
+  const handleSetClick = (event) => {
+    event.preventDefault();
+    setContractSentence();
   };
 
   const handleChange = (event) => {
@@ -62,12 +68,11 @@ const App = () => {
   useEffect(() => {
     if (ethereum) {
       const contract = getContract();
-      getContractSentence(contract);
       setContract({
         contract,
       });
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -85,12 +90,12 @@ const App = () => {
       ) : status === "connected" ? (
         <div>
           <div>
-            Connected account {account} on chain ID {chainId}
+            Account {account} connected on chain ID {chainId}
           </div>
+          <button onClick={handleGetClick}>Get sentece</button>
           <div>{sentence.sentence}</div>
-          <div>Write a new sentence</div>
           <input onChange={handleChange}></input>
-          <button onClick={handleClick}>Set sentece</button>
+          <button onClick={handleSetClick}>Set sentece</button>
         </div>
       ) : (
         <div>There is an error. Try again.</div>

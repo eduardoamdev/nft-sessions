@@ -17,7 +17,14 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 /**
  * @type import('hardhat/config').HardhatUserConfig
  */
- module.exports = {
+
+// Connection to local node
+module.exports = {
+  solidity: "0.8.4"
+};
+
+// Connection to Mumbai Network
+/*  module.exports = {
   defaultNetwork: "matic",
   networks: {
     hardhat: {},
@@ -38,4 +45,4 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
       },
     },
   },
-};
+}; */
