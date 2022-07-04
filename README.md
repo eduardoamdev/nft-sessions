@@ -1,6 +1,6 @@
 # Nft Sessions
 
-<img src="./readme-images/hardhat-react-metamask" alt="hardhat-react-metamask" />
+<img src="./readme-images/hardhat-react-metamask.jpg" alt="hardhat-react-metamask" />
 
 ## Descripción:
 
