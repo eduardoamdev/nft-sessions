@@ -1,6 +1,6 @@
 # Nft Sessions
 
-Cómo importar la network en Metamask:
+## Cómo importar la network en Metamask:
 
 - En la parte superior, donde tenemos las redes tenemos que seleccionar Add network. Una vez hecho esto tenemos dos opciones.
 
@@ -18,9 +18,9 @@ Cómo importar la network en Metamask:
 
     - Block Explorer URL: https://polygonscan.com/
 
-Pasos a seguir para trabajar con Hardhat:
+## Pasos a seguir para trabajar con Hardhat:
 
-- Crear el proyecto
+### Crear el proyecto
   Para crear el prooyecto utilizaremos el comando npx hardhat
   La estructura resultante contendrá los siguientes archivos y directorios entre otros:
 
@@ -29,7 +29,7 @@ Pasos a seguir para trabajar con Hardhat:
   - Una carpeta scripts que contiene el archivo .js encargado de ejcutar el despliegue.
   - Un archivo hardhat.config.js con la configuración necesaria para el despliegue.
 
-- Editar el archivo hardhat.config
+### Editar el archivo hardhat.config
   En este caso tendríamos dos opciones:
   
   - Configurar para el despliegue en un nodo local:
@@ -69,22 +69,37 @@ Pasos a seguir para trabajar con Hardhat:
 
     Agregamos también la API_KEY de PolygonScan para poder verificar allí el contrato.
 
-- Si vamos a trabajar en local deberemos ejecutar npx hardhat node
+### Desplegar el contracto inteligente
+  - Si vamos a trabajar en local deberemos ejecutar npx hardhat node
 
-- Si vamos a trabajar en remoto con la red de pruebas necesitaremos fondos para hacer el despliegue. Para ello, iremos a una faucet y pediremos que nos envíen fondos a nuestra wallet:
+  - Si vamos a trabajar en remoto con la red de pruebas necesitaremos fondos para hacer el despliegue. Para ello, iremos a una faucet y pediremos que nos envíen fondos a nuestra wallet:
 
-<img src="./readme-images/faucet.png" alt="faucet" />
+  <img src="./readme-images/faucet.png" alt="faucet" />
 
-- Nos llegarán los fondos a la wallet que le hamos indicado
+  - Nos llegarán los fondos a la wallet que le hamos indicado
 
-<img src="./readme-images/metamask.png" alt="metamask" />
+  <img src="./readme-images/metamask.png" alt="metamask" />
 
-- Compilar los contratos:
+  - Compilar los contratos:
   Utilizaremos el comando npx hardhat compile
 
-- Desplegar los contratos:
+  - Desplegar los contratos:
   Emplearemos npx hardhat run scripts/sample-script.js aunque si vamos a desplegar en local es aconsejable utilizar npx hardhat run --network localhost scripts/sample-script.js para no tener problemas al arrancar el nodo en una consola y hacer el despliegue en otra.
 
-- Comprobar el despliegue en polygonscan (para despliegues a una network remota):
+  - Comprobar el despliegue en polygonscan (para despliegues a una network remota):
 
-<img src="./readme-images/polygonscan.png" alt="polygonscan" />
+  <img src="./readme-images/polygonscan.png" alt="polygonscan" />
+
+## Open Zeppelin
+
+<img src="./readme-images/open-zeppelin.png" alt="polygonscan" />
+
+Open Zeppelin es una librería que nos permite trabajar con contratos inteligentes ya testeados y normalizados. Esto nos permitirá dar una mayor robustez a nuestras apllicaciones descentralizadas.
+
+### Instalación
+
+Para instalar Open Zeppelin hemos empleado el comando npm install @openzeppelin/contracts. Una vez hecho esto, podremos importar el contrato que queramos en el nuestro mediante import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+
+### Observaciones
+
+Si, como ha sido mi caso, el import falla, deberemos pegar todos los contratos que necesitemos en la carpeta contracts y adaptar las importaciones a la nueva ruta.
