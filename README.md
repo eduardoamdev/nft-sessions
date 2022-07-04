@@ -1,5 +1,12 @@
 # Nft Sessions
 
+<img src="./readme-images/hardhat-react-metamask" alt="hardhat-react-metamask" />
+
+## Descripción:
+
+Nft Sessions es un proyecto pensado para la venta de tokens nft que otorgan el derecho a recibir sesiones formativas.
+Para su desarrollo emplearemos Hardhat, React y Metamask entre otras tecnologías.
+
 ## Cómo importar la network en Metamask:
 
 En la parte superior, donde tenemos las redes tenemos que seleccionar Add network. Una vez hecho esto tenemos dos opciones:
@@ -93,7 +100,7 @@ Podemos comprobar el despliegue en polygonscan (para despliegues a una network r
 
 ## Open Zeppelin
 
-<img src="./readme-images/open-zeppelin.png" alt="polygonscan" />
+<img src="./readme-images/open-zeppelin.png" alt="open-zeppelin" />
 
 Open Zeppelin es una librería que nos permite trabajar con contratos inteligentes ya testeados y normalizados. Esto nos permitirá dar una mayor robustez a nuestras apllicaciones descentralizadas.
 
