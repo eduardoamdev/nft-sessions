@@ -1,13 +1,13 @@
 const hre = require("hardhat");
 
 async function main() {
-  const HelloWorld = await hre.ethers.getContractFactory("HelloWorld");
+  const Session = await hre.ethers.getContractFactory("Session");
 
-  const helloWorld = await HelloWorld.deploy("Hello, Hardhat!");
+  const session = await Session.deploy();
 
-  await helloWorld.deployed();
+  await session.deployed();
 
-  console.log("Contract deployed to:", helloWorld.address);
+  console.log("Contract deployed to:", session.address);
 }
 
 main()

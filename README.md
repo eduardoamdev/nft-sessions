@@ -1,4 +1,4 @@
-# Working on nfts
+# Nft Sessions
 
 Cómo importar la network en Metamask:
 

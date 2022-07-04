@@ -1,18 +1,14 @@
 import "./App.css";
 import { useMetaMask } from "metamask-react";
-import contractAbi from "./abis/helloWorld.json";
+import contractAbi from "./abis/session.json";
 import { ethers } from "ethers";
 import { useState, useEffect } from "react";
 
 const App = () => {
   const { status, connect, account, chainId } = useMetaMask();
 
-  const [sentence, setSentence] = useState({
-    sentence: "",
-  });
-
-  const [inputSentence, setInputSentence] = useState({
-    sentence: "",
+  const [contractName, setContractName] = useState({
+    name: "",
   });
 
   const [contract, setContract] = useState({
@@ -37,32 +33,18 @@ const App = () => {
     return helloWorldContract;
   };
 
-  const getContractSentence = async () => {
-    const sentence = await contract.contract.getSentence();
-    setSentence({
-      sentence,
+  const getContractName = async () => {
+    const name = await contract.contract.name();
+    setContractName({
+      name,
     });
   };
 
-  const setContractSentence = async () => {
-    await contract.contract.setSentence(inputSentence.sentence);
-  };
 
-  const handleGetClick = (event) => {
+
+  const handleGetNameClick = (event) => {
     event.preventDefault();
-    getContractSentence();
-  };
-
-
-  const handleSetClick = (event) => {
-    event.preventDefault();
-    setContractSentence();
-  };
-
-  const handleChange = (event) => {
-    setInputSentence({
-      sentence: event.target.value,
-    });
+    getContractName();
   };
 
   useEffect(() => {
@@ -92,10 +74,8 @@ const App = () => {
           <div>
             Account {account} connected on chain ID {chainId}
           </div>
-          <button onClick={handleGetClick}>Get sentece</button>
-          <div>{sentence.sentence}</div>
-          <input onChange={handleChange}></input>
-          <button onClick={handleSetClick}>Set sentece</button>
+          <button onClick={handleGetNameClick}>Get contract name</button>
+          <div>{contractName.name}</div>
         </div>
       ) : (
         <div>There is an error. Try again.</div>
