@@ -5,6 +5,7 @@
 ## Descripción:
 
 Nft Sessions es un proyecto pensado para la venta de tokens nft que otorgan el derecho a recibir sesiones formativas.
+
 Para su desarrollo emplearemos Hardhat, React y Metamask entre otras tecnologías.
 
 ## Cómo importar la network en Metamask:
