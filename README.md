@@ -116,6 +116,7 @@ Para instalar Open Zeppelin hemos empleado el comando npm install @openzeppelin/
 ### Observaciones
 
 Si, como ha sido mi caso, el import falla, deberemos pegar todos los contratos que necesitemos en la carpeta contracts y adaptar las importaciones a la nueva ruta.
+
 La carpeta contracts quedaría de la siguiente manera:
 
 <img src="./readme-images/contracts-folder.png" alt="contracts-folder" />
