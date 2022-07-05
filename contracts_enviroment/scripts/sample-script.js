@@ -1,13 +1,13 @@
 const hre = require("hardhat");
 
 async function main() {
-  const Session = await hre.ethers.getContractFactory("Session");
+  const SessionToken = await hre.ethers.getContractFactory("SessionToken");
 
-  const session = await Session.deploy();
+  const sessionToken = await SessionToken.deploy();
 
-  await session.deployed();
+  await sessionToken.deployed();
 
-  console.log("Contract deployed to:", session.address);
+  console.log("Contract deployed to:", sessionToken.address);
 }
 
 main()

@@ -7,12 +7,12 @@ import { useState, useEffect } from "react";
 const App = () => {
   const { status, connect, account, chainId } = useMetaMask();
 
-  const [contractName, setContractName] = useState({
-    name: "",
-  });
-
   const [contract, setContract] = useState({
     contract: {},
+  });
+
+  const [sessions, setSessions] = useState({
+    sessions: [],
   });
 
   const contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
@@ -33,18 +33,25 @@ const App = () => {
     return helloWorldContract;
   };
 
-  const getContractName = async () => {
-    const name = await contract.contract.name();
-    setContractName({
-      name,
+  const createSession = async () => {
+    await contract.contract.functions.createSession("2022-08-09");
+  };
+
+  const getSessions = async () => {
+    const sessions = await contract.contract.functions.getSessions();
+    setSessions({
+      sessions,
     });
   };
 
-
-
-  const handleGetNameClick = (event) => {
+  const handleNewSessionClick = (event) => {
     event.preventDefault();
-    getContractName();
+    createSession();
+  };
+
+  const handleGetSessionsClick = (event) => {
+    event.preventDefault();
+    getSessions();
   };
 
   useEffect(() => {
@@ -71,11 +78,12 @@ const App = () => {
         <div>Connecting...</div>
       ) : status === "connected" ? (
         <div>
+          {console.log(sessions.sessions)}
           <div>
             Account {account} connected on chain ID {chainId}
           </div>
-          <button onClick={handleGetNameClick}>Get contract name</button>
-          <div>{contractName.name}</div>
+          <button onClick={handleNewSessionClick}>New session</button>
+          <button onClick={handleGetSessionsClick}>Get sessions</button>
         </div>
       ) : (
         <div>There is an error. Try again.</div>
