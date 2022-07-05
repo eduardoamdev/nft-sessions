@@ -9,7 +9,11 @@ Para su desarrollo emplearemos Hardhat, React y Metamask entre otras tecnología
 
 ## Cómo importar la network en Metamask:
 
-En la parte superior, donde tenemos las redes tenemos que seleccionar Add network. Una vez hecho esto tenemos dos opciones:
+En la parte superior, donde tenemos las redes tenemos que seleccionar Add network.
+
+<img src="./readme-images/add-network.png" alt="add-network" />
+
+Una vez hecho esto tenemos dos opciones:
 
 La primera sería importar la local network si estamos trabajando con un nodo local. En este caso, la URL será http://localhost:8545 y el id de la cadena 31337.
 
@@ -28,7 +32,7 @@ La segunda consiste en importar la red de pruebas de Polygon (Mumbai). Los pará
 ## Pasos a seguir para trabajar con Hardhat:
 
 ### Crear el proyecto
-Para crear el prooyecto utilizaremos el comando npx hardhat
+Para crear el proyecto utilizaremos el comando npx hardhat
 
 La estructura resultante contendrá los siguientes archivos y directorios entre otros:
 
@@ -111,3 +115,6 @@ Para instalar Open Zeppelin hemos empleado el comando npm install @openzeppelin/
 ### Observaciones
 
 Si, como ha sido mi caso, el import falla, deberemos pegar todos los contratos que necesitemos en la carpeta contracts y adaptar las importaciones a la nueva ruta.
+La carpeta contracts quedaría de la siguiente manera:
+
+<img src="./readme-images/contracts-folder.png" alt="contracts-folder" />
